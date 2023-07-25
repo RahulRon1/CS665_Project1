@@ -57,15 +57,24 @@ def add_department(request):
 
     return render(request, 'add_department.html', {'form': form})
 
+def add_employee(request):
 
 
-def update_department(request, department_id):
-    department = get_object_or_404(Department, department_id=department_id)
+
+def update_department(request, dep_id):
+    department = get_object_or_404(Department, department_id=dep_id)
     if request.method == 'POST':
-        form = DepartmentForm(request.POST, instance=department)
+        form = DepartmentForm(request.POST)
         if form.is_valid():
-            form.save()
+            name = form.cleaned_data["name"]
+            location = form.cleaned_data["location"]
+            department.name = name
+            department.location = location
+            department.save()
             return redirect('departments') # redirect to the page where you display all departments
     else:
-        form = DepartmentForm(instance=department)
+        form = DepartmentForm()
+        form.fields['name'].initial = department.name
+        form.fields['location'].initial = department.location
     return render(request, 'update_department.html', {'form': form, 'department': department})
+

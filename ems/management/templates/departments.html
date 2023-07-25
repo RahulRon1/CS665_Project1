@@ -26,20 +26,26 @@
           <td>{{d.created }}</td>
           <td>{{ d.updated }}</td>
           <td>
-            <a href="/dep/edit/{{d.pk}}" class="btn btn-primary btn-sm">Edit</a>
-            <a href="/dep/delete/{{d.pk}}" class="btn btn-danger btn-sm">Delete</a>
+            <a href="/department/edit/{{d.pk}}" class="btn btn-primary btn-sm" style="width:80px;">Edit</a>
+            <br><br>
+            <a href="/department/delete/{{d.pk}}" class="btn btn-danger btn-sm" style="width:80px;">Delete</a>
           </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
+    <br>
+    <center>
+      <a href="/department/add" class="btn btn-primary btn-sm">Add Department</a>
+    </center>
+
     {% else %}
       <p class="text-center">
         No departments information found in the system, please add new department.
       </p>
     <br><br>
     <center>
-      <a href="/dep/add" class="btn btn-primary btn-sm">Add Employee</a>
+      <a href="/department/add" class="btn btn-primary btn-sm">Add Department</a>
     </center>
 
     {% endif %}

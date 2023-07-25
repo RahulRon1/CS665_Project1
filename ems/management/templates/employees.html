@@ -30,8 +30,8 @@
           <td>{{ emp.position }}</td>
           <td>{{ emp.department.name }}</td>
           <td>
-            <a href="/emp/edit/{{emp.pk}}" class="btn btn-primary btn-sm">Edit</a>
-            <a href="/emp/delete/{{emp.pk}}" class="btn btn-danger btn-sm">Delete</a>
+            <a href="/employee/edit/{{emp.pk}}" class="btn btn-primary btn-sm">Edit</a>
+            <a href="/employee/delete/{{emp.pk}}" class="btn btn-danger btn-sm">Delete</a>
           </td>
         </tr>
         {% endfor %}
@@ -43,7 +43,7 @@
       </p>
     <br><br>
     <center>
-      <a href="/emp/add" class="btn btn-primary btn-sm">Add Employee</a>
+      <a href="/employee/add" class="btn btn-primary btn-sm">Add Employee</a>
     </center>
 
     {% endif %}

@@ -6,7 +6,7 @@ class Department(models.Model):
     department_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256)
     location = models.CharField(max_length=100)
-    created = models.DateTimeField(auto_created=True)
+    created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
 
 class Employee(AbstractUser):
