@@ -8,5 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home_page,name='home_page'),
     path('home/',views.home_page,name='home_page'),
+    path('employees/',views.get_all_employees,name='employees'),
+
 
 ]
