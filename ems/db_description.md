@@ -108,6 +108,51 @@ foreign key: employee_id
 Foreign Key Constraints:  This table has foreign key relationship with salary table, if the employee entry
 deleted then salary rows also will delete.
 
+# Functional dependencies 
+
+`department` table
+
+department_id --> created, name, location, updated
+
+`employee` table
+
+employee_id --> created, password, last_login, is_superuser, username, is_staff, is_active, date_joined, first_name, last_name, mobile_number, email, position, department_id, updated
+
+`timesheet` table
+
+timesheet_id --> created, date, hours_worked, updated, employee_id
+
+`salary` table
+
+salary_id --> created, monthly_salary, updated, employee_id
+
+# 3NF
+
+All above tables are in 2NF form and no transitive functional dependencies between tables so all above tables
+are in 3NF form.
+
+# Sample Data
+
+`department` table
+
+department_id	    created	         name	            location	      updated
+1	         2023-07-23 10:30:00	Marketing	        Kansas	     2023-07-23 10:30:00
+2	         2023-07-24 11:15:00	Human Resources	   Dallas	     2023-07-24 11:15:00
+
+`employee` table
+employee_id	   created	         password	       last_login	    is_superuser	      username	       is_staff	           is_active	  date_joined	    first_name	       last_name	    mobile_number	    email	            position	   department_id	 updated
+1	        2023-07-25 09:00:00	   xxxxxx	 2023-07-25 09:00:00	  False	                abc	             True	             True	    2023-07-25 09:00:00	  abcd	              xyz	         1234567890	    abc.xyxz@example.com	Manager	            1	       2023-07-25 09:00:00
+2	         2023-07-26 10:00:00	xxxxx	2023-07-26 10:00:00     False	                abc	             True	              True	    2023-07-26 10:00:00	 xyas	              erd	         0987654321	    jane.doe@example.com	  HR	            2	       2023-07-26 10:00:00
+
+`timesheet` table
+timesheet_id       	created	date	    hours_worked	    updated	        employee_id
+1	           2023-07-27 08:30:00	     	 8	     2023-07-27 08:30:00	   1
+2	            2023-07-28 09:30:00		     8	     2023-07-28 09:30:00	   2
+
+`salary` table
+salary_id	created	         monthly_salary	     updated	   employee_id
+1	    2023-07-29 10:30:00	      5000	    2023-07-29 10:30:00  	1
+2	    2023-07-30 11:30:00	      4500	     2023-07-30 11:30:00	2
 
 
 
