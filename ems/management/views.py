@@ -37,3 +37,22 @@ def delete_employee(request,emp_id):
 def delete_department(request,dep_id):
     Department.objects.filter(pk=dep_id).delete()
     return redirect('departments')
+
+
+
+from .forms import DepartmentForm
+
+
+def add_department(request):
+    if request.method == 'POST':
+        form = DepartmentForm(request.POST)
+        if form.is_valid():
+            Department.objects.create(
+                name=form.cleaned_data['name'],
+                location=form.cleaned_data['location'],
+            )
+            return redirect('departments')
+    else:
+        form = DepartmentForm()
+
+    return render(request, 'add_department.html', {'form': form})
