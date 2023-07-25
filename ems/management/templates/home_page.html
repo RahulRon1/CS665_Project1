@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.btn{
+  width:220px !important;
+  border-radius:50px;
+}
+.card-header{
+  font-weight:bold;
+  font-size:25px;
+}
+</style>
+  <div class="container">
+    <h1 class="text-center">Welcome to Employee Management System</h1>
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <div class="card text-black mb-3 text-center">
+          <div class="card-header">Employees</div>
+          <div class="card-body">
+            <p class="card-text">View, add, update, or delete employee information.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Go to Employees</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card text-black text-center  mb-3">
+          <div class="card-header">Departments</div>
+          <div class="card-body">
+            <p class="card-text">View, add, update, or delete department information.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Go to Departments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-md-6">
+        <br><br>
+        <div class="card text-black text-center  mb-3">
+          <div class="card-header">Timesheets</div>
+          <div class="card-body">
+            <p class="card-text">View, add, update, or delete timesheet entries.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Go to Timesheets</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <br><br>
+        <div class="card text-black  text-center mb-3">
+          <div class="card-header">Salaries</div>
+          <div class="card-body">
+            <p class="card-text">View, add, update, or delete salary information.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Go to Salaries</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
