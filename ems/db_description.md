@@ -6,7 +6,7 @@ each employee information, department information, timesheets of each employee a
 We using the relational database so it will make ease management and querying the data due to relational established 
 among the tables through the foreign keys.
 
-Employee Table: This is the main table of our application and this table will use to store the employee personal
+`Employee Table: This is the main table of our application and this table will use to store the employee personal
 information like employee id, name, mobile number, address and email address.
 
 Timesheet table: This table is using the storing the time sheet details of the employee and this table has foreign 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS "salary" (
 "monthly_salary" real NOT NULL, 
 "updated" datetime NOT NULL, 
 "employee_id" integer NOT NULL REFERENCES "management_employee" ("employee_id") DEFERRABLE INITIALLY DEFERRED
-);
+);`
 
 # attributes, primary keys, foreign keys.
 
