@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4 text-center">Add New Employee</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <center>
+        <button type="submit" class="btn btn-primary">Add Employee</button>
+      </center>
+
+    </form>
+  </div>
+{% endblock %}

@@ -57,7 +57,44 @@ def add_department(request):
 
     return render(request, 'add_department.html', {'form': form})
 
+
+from .forms import EmployeeForm
+from django.contrib.auth.hashers import make_password
+from .models import Employee
+
 def add_employee(request):
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            # Get the validated form data
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            mobile_number = form.cleaned_data['mobile_number']
+            email = form.cleaned_data['email']
+            position = form.cleaned_data['position']
+            department = form.cleaned_data['department']
+
+            # Create the employee
+            employee = Employee(
+                username=username,
+                password=make_password(password),  # Hash the password
+                first_name=first_name,
+                last_name=last_name,
+                mobile_number=mobile_number,
+                email=email,
+                position=position,
+                department=department,
+            )
+            employee.save()
+
+            return redirect('employees')
+    else:
+        form = EmployeeForm()
+
+    return render(request, 'add_employee.html', {'form': form})
+
 
 
 
