@@ -17,7 +17,8 @@ def get_all_timesheets(request,emp_id):
     employee = get_object_or_404(Employee, pk=emp_id)
     timesheets = Timesheet.objects.select_related('employee').filter(employee=employee)  # Use select_related to reduce DB hits when referencing foreign key
     context = {
-        'timesheets': timesheets
+        'timesheets': timesheets,
+        'employee':employee
     }
     return render(request, 'employee_timesheets.html', context)
 
@@ -26,7 +27,8 @@ def get_all_salaries(request,emp_id):
     employee = get_object_or_404(Employee, pk=emp_id)
     salaries = Salary.objects.select_related('employee').filter(employee=employee)   # Use select_related to reduce DB hits when referencing foreign key
     context = {
-        'salaries': salaries
+        'salaries': salaries,
+        'employee':employee
     }
     return render(request, 'employee_salaries.html', context)
 
@@ -150,3 +152,33 @@ def update_employee(request, emp_id):
         form.fields['department'].initial = employee.department.department_id
         form.fields['mobile_number'].initial = employee.mobile_number
     return render(request, 'update_employee.html', {'form': form, 'employee': employee})
+
+from .forms import TimesheetForm
+
+def add_timesheet(request,emp_id):
+    employee = get_object_or_404(Employee, employee_id=emp_id)
+    if request.method == 'POST':
+        form = TimesheetForm(request.POST)
+        if form.is_valid():
+            date = form.cleaned_data['date']
+            hours_worked = form.cleaned_data['hours_worked']
+            Timesheet.objects.create(date=date, hours_worked=hours_worked, employee=employee)
+            return redirect('employee_timesheets', emp_id=employee.employee_id)
+    else:
+        form = TimesheetForm()
+
+    return render(request, 'add_timesheet.html', {'form': form,'employee':employee})
+
+from .forms import SalaryForm
+def add_salary(request,emp_id):
+    employee = get_object_or_404(Employee, employee_id=emp_id)
+    if request.method == 'POST':
+        form = SalaryForm(request.POST)
+        if form.is_valid():
+            monthly_salary = form.cleaned_data['monthly_salary']
+            Salary.objects.create(monthly_salary=monthly_salary,employee=employee)
+            return redirect('employee_salaries', emp_id=employee.employee_id)
+    else:
+        form = SalaryForm()
+
+    return render(request, 'add_salary.html', {'form': form,'employee':employee})

@@ -2,14 +2,15 @@
 
 {% block content %}
 <div class="container">
-    <h1>Salaries</h1>
+    <h2 class="text-center">Salaries</h2>
+    {% if salaries %}
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th>Employee Name</th>
+                <th>Employee Last Name</th>
                 <th scope="col">Monthly Salary</th>
-                <th scope="col">Bonus</th>
             </tr>
         </thead>
         <tbody>
@@ -17,8 +18,8 @@
             <tr>
                 <th scope="row">{{ salary.salary_id }}</th>
                 <th>{{salary.employee.first_name}}</th>
+                <th>{{salary.employee.last_name}}</th>
                 <td>{{ salary.monthly_salary }}</td>
-                <td>{{ salary.bonus }}</td>
             </tr>
         {% empty %}
             <tr>
@@ -27,5 +28,18 @@
         {% endfor %}
         </tbody>
     </table>
+    <br>
+    <center>
+         <a href="/employees/" class="btn btn-primary btn-sm">Show Employees</a>
+    </center>
+    {% else %}
+        <p class="text-center">
+        No salary information found in the system, please add new time sheet.
+      </p>
+    <br><br>
+    <center>
+      <a href="/employee/{{employee.pk}}/add/salary/" class="btn btn-primary btn-sm">Add Salary</a>
+    </center>
+    {% endif %}
 </div>
 {% endblock %}

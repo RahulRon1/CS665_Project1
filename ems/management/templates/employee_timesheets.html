@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="text-center">Employee Time sheets</h1>
+    <h2 class="text-center">Employee Time sheets</h2>
     {% if timesheets %}
     <table class="table">
         <thead>
@@ -28,13 +28,18 @@
         {% endfor %}
         </tbody>
     </table>
+    <br>
+    <center>
+         <a href="/employees/" class="btn btn-primary btn-sm">Show Employees</a>
+    </center>
+
     {% else %}
         <p class="text-center">
         No timesheet information found in the system, please add new time sheet.
       </p>
     <br><br>
     <center>
-      <a href="/employee/add" class="btn btn-primary btn-sm">Add Employee</a>
+      <a href="/employee/{{employee.pk}}/add/timesheet/" class="btn btn-primary btn-sm">Add TimeSheet</a>
     </center>
     {% endif %}
 </div>

@@ -17,6 +17,9 @@ urlpatterns = [
     path('employee/edit/<int:emp_id>/', views.update_employee, name='edit_employee'),
     path('employee/delete/<int:emp_id>/', views.delete_employee, name='edit_employee'),
     path('employee/<int:emp_id>/timesheets/', views.get_all_timesheets, name='employee_timesheets'),
+
+    path('employee/<int:emp_id>/add/timesheet/', views.add_timesheet, name='add_new_timesheet'),
+    path('employee/<int:emp_id>/add/salary/', views.add_salary, name='add_new_salary'),
     path('employee/<int:emp_id>/salaries/', views.get_all_salaries, name='employee_salaries'),
 
     path('employee/<int:emp_id>/',views.delete_employee,name='del_emp'),
