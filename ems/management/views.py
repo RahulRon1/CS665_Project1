@@ -56,3 +56,16 @@ def add_department(request):
         form = DepartmentForm()
 
     return render(request, 'add_department.html', {'form': form})
+
+
+
+def update_department(request, department_id):
+    department = get_object_or_404(Department, department_id=department_id)
+    if request.method == 'POST':
+        form = DepartmentForm(request.POST, instance=department)
+        if form.is_valid():
+            form.save()
+            return redirect('departments') # redirect to the page where you display all departments
+    else:
+        form = DepartmentForm(instance=department)
+    return render(request, 'update_department.html', {'form': form, 'department': department})
