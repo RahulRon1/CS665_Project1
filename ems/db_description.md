@@ -15,7 +15,11 @@ key relationship to employee table.
 Salary table: This table is using for storing the salary of the employee and this table also has the foreign 
 key relationship to employee table because employee is the root table in the database.
 
-Department table: Department table is using for storing the department details of the employee.
+Department table: Department table is using for storing the department details of the employee, Each employee
+belongs to any one of the department.
+
+
+
 
 
 
