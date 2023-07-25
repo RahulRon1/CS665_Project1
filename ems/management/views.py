@@ -29,3 +29,11 @@ def get_all_salaries(request,emp_id):
         'salaries': salaries
     }
     return render(request, 'employee_salaries.html', context)
+
+def delete_employee(request,emp_id):
+    Employee.objects.filter(pk=emp_id).delete()
+    return redirect('employees')
+
+def delete_department(request,dep_id):
+    Department.objects.filter(pk=dep_id).delete()
+    return redirect('departments')
