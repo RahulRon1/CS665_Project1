@@ -51,3 +51,5 @@ VALUES ('2023-07-30 11:30:00', 7500, '2023-07-30 11:30:00', 3);
 
 INSERT INTO salary (created, monthly_salary, updated, employee_id) 
 VALUES ('2023-07-30 11:30:00', 9500, '2023-07-30 11:30:00', 4);
+
+
