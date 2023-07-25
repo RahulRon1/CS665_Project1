@@ -115,3 +115,38 @@ def update_department(request, dep_id):
         form.fields['location'].initial = department.location
     return render(request, 'update_department.html', {'form': form, 'department': department})
 
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Employee
+from .forms import EmployeeForm
+
+def update_employee(request, emp_id):
+    employee = get_object_or_404(Employee, employee_id=emp_id)
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            first_name = form.cleaned_data["first_name"]
+            last_name = form.cleaned_data["last_name"]
+            email = form.cleaned_data["email"]
+            position = form.cleaned_data["position"]
+            department_id = form.cleaned_data["department"]
+            mobile_number = form.cleaned_data["mobile_number"]
+            employee.username = username
+            employee.first_name = first_name
+            employee.last_name = last_name
+            employee.email = email
+            employee.position = position
+            employee.department_id = department_id
+            employee.mobile_number = mobile_number
+            employee.save()
+            return redirect('employees') # redirect to the page where you display all employees
+    else:
+        form = EmployeeForm()
+        form.fields['username'].initial = employee.username
+        form.fields['first_name'].initial = employee.first_name
+        form.fields['last_name'].initial = employee.last_name
+        form.fields['email'].initial = employee.email
+        form.fields['position'].initial = employee.position
+        form.fields['department'].initial = employee.department.department_id
+        form.fields['mobile_number'].initial = employee.mobile_number
+    return render(request, 'update_employee.html', {'form': form, 'employee': employee})

@@ -5,7 +5,7 @@
 {% block content %}
   <div class="container mt-5">
     <h2 class="text-center">All Employees</h2>
-    {% if employee %}
+    {% if employees %}
     <table class="table table-striped">
       <thead>
         <tr>
@@ -17,6 +17,7 @@
           <th scope="col">Position</th>
           <th scope="col">Department</th>
           <th scope="col">Actions</th>
+          <th scope="col">#</th>
         </tr>
       </thead>
       <tbody>
@@ -30,8 +31,14 @@
           <td>{{ emp.position }}</td>
           <td>{{ emp.department.name }}</td>
           <td>
-            <a href="/employee/edit/{{emp.pk}}" class="btn btn-primary btn-sm">Edit</a>
-            <a href="/employee/delete/{{emp.pk}}" class="btn btn-danger btn-sm">Delete</a>
+            <a href="/employee/{{emp.pk}}/timesheets" class="btn btn-primary btn-sm" style="width:150px;">See Time Sheets</a>
+            <br><br>
+            <a href="/employee/{{emp.pk}}/salaries" class="btn btn-primary btn-sm" style="width:150px;">See Salary</a>
+          </td>
+          <td>
+            <a href="/employee/edit/{{emp.pk}}"  style="width:80px;">Edit</a>
+            <br><br>
+            <a href="/employee/delete/{{emp.pk}}"  style="width:80px;">Delete</a>
           </td>
         </tr>
         {% endfor %}

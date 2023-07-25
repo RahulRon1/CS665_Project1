@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center">Employee Time sheets</h1>
+    {% if timesheets %}
     <table class="table">
         <thead>
             <tr>
@@ -22,10 +23,19 @@
             </tr>
         {% empty %}
             <tr>
-                <td colspan="3" class="text-center">No time sheets found for this employee.</td>
+                <td colspan="4" class="text-center">No time sheets found for this employee.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <p class="text-center">
+        No timesheet information found in the system, please add new time sheet.
+      </p>
+    <br><br>
+    <center>
+      <a href="/employee/add" class="btn btn-primary btn-sm">Add Employee</a>
+    </center>
+    {% endif %}
 </div>
 {% endblock %}
