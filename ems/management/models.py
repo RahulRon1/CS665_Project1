@@ -5,7 +5,9 @@ from django.contrib.auth.models import AbstractUser
 class Department(models.Model):
     department_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256)
-
+    location = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_created=True)
+    updated = models.DateTimeField(auto_now_add=True)
 
 class Employee(AbstractUser):
     employee_id = models.AutoField(primary_key=True)
@@ -26,7 +28,7 @@ class Timesheet(models.Model):
     timesheet_id = models.AutoField(primary_key=True)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     date = models.DateField()
-    hours_worked = models.DecimalField(default=0.0)
+    hours_worked = models.FloatField(default=0.0)
     created = models.DateTimeField(auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)
 
@@ -34,7 +36,7 @@ class Timesheet(models.Model):
 class Salary(models.Model):
     salary_id = models.AutoField(primary_key=True)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    monthly_salary = models.DecimalField(max_digits=8, decimal_places=2)
+    monthly_salary = models.FloatField(default=0.0)
     created = models.DateTimeField(auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)
 
