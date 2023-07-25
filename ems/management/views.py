@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 
 from .models import Employee,Department,Timesheet,Salary
 def home_page(request):
@@ -11,3 +11,21 @@ def get_all_employees(request):
 def get_all_departments(request):
     departments = Department.objects.all()
     return render(request, 'departments.html', {'departments': departments})
+
+
+def get_all_timesheets(request,emp_id):
+    employee = get_object_or_404(Employee, pk=emp_id)
+    timesheets = Timesheet.objects.select_related('employee').filter(employee=employee)  # Use select_related to reduce DB hits when referencing foreign key
+    context = {
+        'timesheets': timesheets
+    }
+    return render(request, 'employee_timesheets.html', context)
+
+
+def get_all_salaries(request,emp_id):
+    employee = get_object_or_404(Employee, pk=emp_id)
+    salaries = Salary.objects.select_related('employee').filter(employee=employee)   # Use select_related to reduce DB hits when referencing foreign key
+    context = {
+        'salaries': salaries
+    }
+    return render(request, 'employee_salaries.html', context)

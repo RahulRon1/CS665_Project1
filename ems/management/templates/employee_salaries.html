@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Salaries</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th>Employee Name</th>
+                <th scope="col">Monthly Salary</th>
+                <th scope="col">Bonus</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for salary in salaries %}
+            <tr>
+                <th scope="row">{{ salary.salary_id }}</th>
+                <th>{{salary.employee.first_name}}</th>
+                <td>{{ salary.monthly_salary }}</td>
+                <td>{{ salary.bonus }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">No salary records found for this employee.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
